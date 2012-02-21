@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+	<head>
+		<title>GenShaders</title>
+		<script src="jquery-1.7.1.min.js"></script>
+		<script id="vertex_shader" type="x-shader/x-vertex">
+			precision highp float;
+			attribute vec3 pos;
+
+			void main() {
+				gl_Position = vec4(pos.xyz-1.0, 1);
+			}
+		</script>
+		<script id="fragment_shader" type="x-shader/x-fragment">
+			precision highp float;
+			uniform float time;
+			uniform vec2 resolution;
+
+			void main() {
+				vec2 coord = gl_FragCoord.xy / resolution;
+				gl_FragColor = vec4(coord.x, coord.y, sin(time), 1.0);
+			}
+		</script>
+		<script src="webray.js"></script>
+	</head>
+	<body>
+		<canvas id="cvs"/>
+	</body>
+</html>
